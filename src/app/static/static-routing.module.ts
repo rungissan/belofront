@@ -10,11 +10,11 @@ const routes: Routes = [
   //   component: AboutComponent,
   //   data: { title: 'anms.menu.about' }
   //   },
-   {
+  {
     path: 'features',
     component: FeaturesComponent,
     data: { title: 'anms.menu.features' }
-    }
+  }
 ];
 
 @NgModule({

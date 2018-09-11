@@ -20,17 +20,10 @@ describe('Component: Signout', () => {
   beforeEach(async(() => {
     // refine the test module by declaring the test component
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.provideStore(reducer)
-      ],
-      declarations: [
-        SignOutComponent
-      ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-      ]
-    })
-    .compileComponents();
+      imports: [StoreModule.provideStore(reducer)],
+      declarations: [SignOutComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
 
     // create component and test fixture
     fixture = TestBed.createComponent(SignOutComponent);
@@ -40,6 +33,6 @@ describe('Component: Signout', () => {
   }));
 
   it('should create an instance', () => {
-   expect(component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 });

@@ -49,6 +49,6 @@ const components = [
     UsersRoutingModule
   ],
   declarations: components,
-  exports: components,
+  exports: components
 })
-export class UsersModule { }
+export class UsersModule {}

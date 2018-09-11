@@ -1,37 +1,37 @@
 /* tslint:disable:no-unused-variable */
-import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MaterialModule } from "@angular/material";
-import { ActivatedRoute } from "@angular/router";
-import { By } from "@angular/platform-browser";
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { By } from '@angular/platform-browser';
 
 // rxjs
-import { Observable } from "rxjs/Observable";
+import { Observable, of } from 'rxjs';
 
 // ngrx
-import { Store, StoreModule } from "@ngrx/store";
-import { go } from "@ngrx/router-store";
+import { Store, StoreModule } from '@ngrx/store';
+
 
 // reducers
-import { reducer } from "../../app.reducers";
+import { reducer } from '../../app.reducers';
 
 // services
-import { GroupService } from "../../core/services/group.service";
-import { MockGroupService } from "../../../testing/mock.group.service";
-import { USER } from "../../../testing/mock.user.service";
+import { GroupService } from '../../core/services/group.service';
+import { MockGroupService } from '../../../testing/mock.group.service';
+import { USER } from '../../../testing/mock.user.service';
 
 // models
-import { User } from "../../models/user";
+import { User } from '../../models/user';
 
 // component to test
-import { SignUpComponent } from "./sign-up.component";
+import { SignUpComponent } from './sign-up.component';
 
-describe("Component: Signup", () => {
+describe('Component: Signup', () => {
   let component: SignUpComponent;
   let fixture: ComponentFixture<SignUpComponent>;
   let page: Page;
-  let user: User = new User();
+  let user = new User();
 
   beforeEach(() => {
     user = USER;
@@ -53,7 +53,7 @@ describe("Component: Signup", () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            queryParams: Observable.of({})
+            queryParams: of({})
           }
         },
         { provide: GroupService, useClass: MockGroupService }
@@ -79,25 +79,25 @@ describe("Component: Signup", () => {
     });
   });
 
-  it("should create a FormGroup comprised of FormControls", () => {
+  it('should create a FormGroup comprised of FormControls', () => {
     fixture.detectChanges();
     expect(component.signupForm instanceof FormGroup).toBe(true);
   });
 
-  it("should authenticate", () => {
+  it('should authenticate', () => {
     fixture.detectChanges();
 
     // set FormControl values
-    component.signupForm.controls["firstName"].setValue(user.firstName);
-    component.signupForm.controls["lastName"].setValue(user.lastName);
-    component.signupForm.controls["email"].setValue(user.email);
-    component.signupForm.controls["password"].setValue(user.password);
+    component.signupForm.controls['firstName'].setValue(user.firstName);
+    component.signupForm.controls['lastName'].setValue(user.lastName);
+    component.signupForm.controls['email'].setValue(user.email);
+    component.signupForm.controls['password'].setValue(user.password);
 
     // submit form
     component.submit();
 
     // verify Store.dispatch is invoked
-    expect(page.navigateSpy.calls.any()).toBe(true, "Store.dispatch not called");
+    expect(page.navigateSpy.calls.any()).toBe(true, 'Store.dispatch not called');
   });
 });
 
@@ -120,20 +120,20 @@ class Page {
     const store = injector.get(Store);
 
     // add spies
-    this.navigateSpy  = spyOn(store, "dispatch");
+    this.navigateSpy  = spyOn(store, 'dispatch');
   }
 
   public addPageElements() {
-    const firstNameInputSelector = "md-input-container input[formcontrolname=\"firstName\"]";
+    const firstNameInputSelector = 'md-input-container input[formcontrolname="firstName"]';
     this.firstNameInput = this.fixture.debugElement.query(By.css(firstNameInputSelector)).nativeElement;
 
-    const lastNameInputSelector = "md-input-container input[formcontrolname=\"lastName\"]";
+    const lastNameInputSelector = 'md-input-container input[formcontrolname="lastName"]';
     this.lastNameInput = this.fixture.debugElement.query(By.css(lastNameInputSelector)).nativeElement;
 
-    const emailInputSelector = "md-input-container input[formcontrolname=\"email\"]";
+    const emailInputSelector = 'md-input-container input[formcontrolname="email"]';
     this.emailInput = this.fixture.debugElement.query(By.css(emailInputSelector)).nativeElement;
 
-    const passwordInputSelector = "md-input-container input[formcontrolname=\"password\"]";
+    const passwordInputSelector = 'md-input-container input[formcontrolname="password"]';
     this.passwordInput = this.fixture.debugElement.query(By.css(passwordInputSelector)).nativeElement;
   }
 }

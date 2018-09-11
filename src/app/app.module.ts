@@ -13,8 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, DOCUMENT } from './app.component';
 import { WINDOW_PROVIDERS } from '@app/core/services/window.service';
 
-
-
 export function _document(): any {
   return document;
 }
@@ -28,7 +26,7 @@ export function _document(): any {
     // core & shared
     CoreModule,
     SharedModule,
-       // features
+    // features
     StaticModule,
     SettingsModule,
     // app

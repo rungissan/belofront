@@ -8,9 +8,8 @@ describe('ElectroComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ElectroComponent ]
-    })
-    .compileComponents();
+      declarations: [ElectroComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

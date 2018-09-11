@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 // @ngrx
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 // rxjs
-import { Observable } from 'rxjs';
-import { filter, takeWhile } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 // actions
 import { AuthenticateAction } from '../users.actions';
@@ -53,7 +53,7 @@ export class SignInComponent implements OnDestroy, OnInit {
    * Component state.
    * @type {boolean}
    */
-  private alive = true;
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   /**
    * @constructor
@@ -83,8 +83,9 @@ export class SignInComponent implements OnDestroy, OnInit {
     this.loading = this.store.select(isAuthenticationLoading);
 
     // subscribe to success
-    this.store.select(isAuthenticated).pipe(
-      takeWhile(() => this.alive),
+    this.store.pipe(
+      select(isAuthenticated),
+      takeUntil(this.unsubscribe$),
       filter(authenticated => authenticated))
       .subscribe(() => {
         this.store.dispatch(new RouterActions.RouterGo({
@@ -98,7 +99,8 @@ export class SignInComponent implements OnDestroy, OnInit {
    * @method ngOnDestroy
    */
   public ngOnDestroy() {
-    this.alive = false;
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   /**

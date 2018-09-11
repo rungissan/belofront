@@ -10,8 +10,9 @@ const routes: Routes = [
     children: [
       {
         path: 'calculators',
-        loadChildren: 'app/static/calculators/calculators.module#CalculatorsModule',
-      //  component: CalculatorsComponent,
+        loadChildren:
+          'app/static/calculators/calculators.module#CalculatorsModule',
+        //  component: CalculatorsComponent,
         data: { title: 'anms.menu.about' }
       }
     ]

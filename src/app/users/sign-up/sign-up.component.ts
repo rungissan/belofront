@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 // @ngrx
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as RouterActions from '@app/core/router/router-effect';
 // rxjs
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 // actions
 import { SignUpAction } from '../users.actions';
@@ -20,7 +20,7 @@ import {
 // models
 import { User } from '../../core/models/user';
 import { AppState } from '@app/core/core.state';
-import { takeWhile, filter } from 'rxjs/operators';
+import { takeWhile, filter, takeUntil } from 'rxjs/operators';
 
 /**
  * /users/sign-up
@@ -54,7 +54,7 @@ export class SignUpComponent implements OnDestroy, OnInit {
    * Component state.
    * @type {boolean}
    */
-  private alive = true;
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   /**
    * @constructor
@@ -80,14 +80,15 @@ export class SignUpComponent implements OnDestroy, OnInit {
     });
 
     // set error
-    this.error = this.store.select(getSignUpError);
+    this.error = this.store.pipe(select(getSignUpError));
 
     // set loading
-    this.loading = this.store.select(isAuthenticationLoading);
+    this.loading = this.store.pipe(select(isAuthenticationLoading));
 
     // subscribe to success
-    this.store.select(isAuthenticated).pipe(
-      takeWhile(() => this.alive),
+    this.store.pipe(
+     select(isAuthenticated),
+     takeUntil(this.unsubscribe$),
       filter(authenticated => authenticated))
       .subscribe(() => {
         this.store.dispatch(new RouterActions.RouterGo({
@@ -101,7 +102,8 @@ export class SignUpComponent implements OnDestroy, OnInit {
    * @method ngOnDestroy
    */
   public ngOnDestroy() {
-    this.alive = false;
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   /**

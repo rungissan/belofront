@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import { User } from '../models/user';
 
@@ -38,7 +38,7 @@ export class UserService {
       return of(MOCK_USER);
     }
 
-    return Observable.throw(new Error('Invalid email or password'));
+    return throwError(new Error('Invalid email or password'));
   }
 
   /**

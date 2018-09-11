@@ -18,9 +18,6 @@ import { reducers, metaReducers } from './core.state';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterEffects } from '@app/core/router/router-effect';
 
-
-
-
 @NgModule({
   imports: [
     // angular

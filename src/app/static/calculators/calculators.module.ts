@@ -9,7 +9,13 @@ import { ElectroComponent } from '@app/static/calculators/electro/electro.compon
 import { MotoComponent } from '@app/static/calculators/moto/moto.component';
 import { SharedModule } from '@app/shared';
 @NgModule({
-  imports: [CommonModule, CalculatorsRoutingModule, SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    CalculatorsRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     CalculatorsComponent,
     CarComponent,

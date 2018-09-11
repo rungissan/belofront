@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, AfterViewInit, Inject } from '@angular/co
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 // @ngrx
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 // rxjs
 import { Observable, Subject } from 'rxjs';
@@ -21,12 +21,7 @@ import * as RouterActions from '@app/core/router/router-effect';
 import { AppState } from '@app/core/core.state';
 import { DOCUMENT } from '@angular/common';
 
-interface Marker {
-  lat: number;
-  lng: number;
-  label?: string;
-  draggable: boolean;
-}
+
 declare var google: any;
 
 
@@ -88,13 +83,14 @@ export class ContactComponent implements OnDestroy, OnInit, AfterViewInit {
     });
 
     // set error
-    this.error = this.store.select(getAuthenticationError);
+    this.error = this.store.pipe(select(getAuthenticationError));
 
     // set loading
-    this.loading = this.store.select(isAuthenticationLoading);
+    this.loading = this.store.pipe(select(isAuthenticationLoading));
 
     // subscribe to success
-    this.store.select(isAuthenticated).pipe(
+    this.store.pipe(
+      select(isAuthenticated),
       takeUntil(this.unsubscribe$),
       filter(authenticated => authenticated))
       .subscribe(() => {

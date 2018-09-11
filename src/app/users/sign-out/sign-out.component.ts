@@ -4,7 +4,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 // rxjs
-import { Observable } from 'rxjs';
 import * as RouterActions from '@app/core/router/router-effect';
 // actions
 import { SignOutAction } from '../users.actions';
@@ -27,7 +26,6 @@ export class SignOutComponent implements OnDestroy, OnInit {
    * Component state.
    * @type {boolean}
    */
-  private alive = true;
 
   /**
    * @constructor
@@ -38,9 +36,7 @@ export class SignOutComponent implements OnDestroy, OnInit {
   /**
    *  Lifecycle hook that is called when a directive, pipe or service is destroyed.
    */
-  public ngOnDestroy() {
-    this.alive = false;
-  }
+  public ngOnDestroy() {}
 
   /**
    * Lifecycle hook that is called after data-bound properties of a directive are initialized.

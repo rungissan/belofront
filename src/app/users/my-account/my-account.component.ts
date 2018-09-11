@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // @ngrx
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 
 // rxjs
@@ -42,7 +42,7 @@ export class MyAccountComponent implements OnInit {
    */
   public ngOnInit() {
     // get authenticated user
-    this.user = this.store.select(getAuthenticatedUser);
+    this.user = this.store.pipe(select(getAuthenticatedUser));
   }
 
   /**

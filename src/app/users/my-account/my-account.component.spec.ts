@@ -13,24 +13,16 @@ import { UserService } from '../../core/services/user.service';
 import { MyAccountComponent } from './my-account.component';
 
 describe('MyAccountComponent', () => {
-
   let component: MyAccountComponent;
   let fixture: ComponentFixture<MyAccountComponent>;
 
   beforeEach(async(() => {
     // refine the test module by declaring the test component
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.provideStore(reducer)
-      ],
-      declarations: [
-        MyAccountComponent
-      ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-      ]
-    })
-    .compileComponents();
+      imports: [StoreModule.provideStore(reducer)],
+      declarations: [MyAccountComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
 
     // create component and test fixture
     fixture = TestBed.createComponent(MyAccountComponent);
@@ -40,6 +32,6 @@ describe('MyAccountComponent', () => {
   }));
 
   it('should create an instance', () => {
-   expect(component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 });

@@ -19,13 +19,6 @@ const routes: Routes = [
     loadChildren: 'app/examples/examples.module#ExamplesModule'
   },
   {
-    path: 'auth',
-    loadChildren: './auth/auth.module#AuthModule',
-    data: {
-      title: 'Auth me'
-    }
-  },
-  {
     path: 'contact',
     loadChildren: 'app/static/contact/contact.module#ContactModule'
   },

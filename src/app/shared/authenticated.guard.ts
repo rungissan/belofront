@@ -5,7 +5,7 @@ import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapsho
 import { Observable } from 'rxjs';
 
 // import @ngrx
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 // import { go } from '@ngrx/router-store';
 import * as RouterActions from '../core/router/router-effect';
 
@@ -32,8 +32,7 @@ export class AuthenticatedGuard implements CanActivate, CanLoad {
    */
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     // get observable
-    const observable = this.store.select(isAuthenticated);
-
+    const observable = this.store.pipe(select(isAuthenticated));
     // redirect to sign in page if user is not authenticated
     observable.subscribe(authenticated => {
       if (!authenticated) {
@@ -51,7 +50,7 @@ export class AuthenticatedGuard implements CanActivate, CanLoad {
    */
   canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
     // get observable
-    const observable = this.store.select(isAuthenticated);
+    const observable = this.store.pipe(select(isAuthenticated));
 
     // redirect to sign in page if user is not authenticated
     observable.subscribe(authenticated => {
