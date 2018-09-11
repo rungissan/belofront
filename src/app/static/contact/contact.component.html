@@ -1,0 +1,48 @@
+<div class="flex-container" fxLayout="column">
+<div class="map-container" >
+<!-- <ngx-google-map [mapType]="'ROADMAP'" [multiplePlaces]="false" d="mapgoogle" #mapgoogle></ngx-google-map> -->
+<div control=gmap size=100% latlng=46.417995,30.724852></div>
+</div>
+   <div fxLayout="row" fxLayoutAlign="center" class="card-container">
+    <div fxFlex="90%" fxFlex.md="50%" fxFlex.lg="40%">
+      <mat-card>
+        <mat-card-title>Contact Us</mat-card-title>
+        <mat-card-content>
+          <div *ngIf="error | async" color="error">{{ error | async }}</div>
+          <form *ngIf="!(loading | async)" (ngSubmit)="submit()" [formGroup]="form" novalidate>
+            <div fxLayout="column" fxLayoutAlign="start stretch">
+              <mat-form-field>
+                <input matInput required type="txt" placeholder="First Name" autocomplete="off" autocorrect="off"
+                  autocapitalize="off" spellcheck="off" formControlName="firstName">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput required type="txt" placeholder="Last Name" autocomplete="off" autocorrect="off"
+                  autocapitalize="off" spellcheck="off" formControlName="lastName">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="email" required placeholder="Email Address" autocorrect="off" autocapitalize="off"
+                  spellcheck="off" formControlName="email">
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="txt" placeholder="Phone number" formControlName="phone" required>
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-hint>Include area code</mat-hint>
+              </mat-form-field>
+              <mat-form-field>
+                <textarea matInput placeholder="Textarea" formControlName="request"></textarea>
+                <mat-icon matSuffix>textsms</mat-icon>
+              </mat-form-field>
+              <button mat-raised-button color="accent" [disabled]="form.invalid" type="submit">Send</button>
+            </div>
+          </form>
+          <div fxLayout="row" fxLayoutAlign="center">
+            <mat-spinner *ngIf="loading | async"></mat-spinner>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+   
+</div>

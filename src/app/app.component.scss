@@ -179,4 +179,25 @@ mat-sidenav {
   .mat-nav-list {
     padding-top: 0;
   }
+ 
 }
+ 
+ .back-to-top.active {
+   bottom: 150px;
+   opacity: 1;
+ }
+ .back-to-top {
+   cursor: pointer;
+   color: #fff;
+   padding: 20px 21px;
+   font-size: 15px;
+   position: fixed;
+   right: 50px;
+   -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 0, .2);
+   box-shadow: 0 0 12px 0 rgba(0, 0, 0, .2);
+   background-color: #03a9f4;
+   bottom: -50px;
+   opacity: 0;
+ }
+ 
+

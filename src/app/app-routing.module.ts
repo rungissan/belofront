@@ -19,8 +19,27 @@ const routes: Routes = [
     loadChildren: 'app/examples/examples.module#ExamplesModule'
   },
   {
+    path: 'auth',
+    loadChildren: './auth/auth.module#AuthModule',
+    data: {
+      title: 'Auth me'
+    }
+  },
+  {
+    path: 'contact',
+    loadChildren: 'app/static/contact/contact.module#ContactModule'
+  },
+  {
+    path: 'users',
+    loadChildren: 'app/users/users.module#UsersModule'
+  },
+  {
+    path: '404',
+    loadChildren: 'app/static/not-found/not-found.module#NotFoundModule'
+  },
+  {
     path: '**',
-    redirectTo: 'about'
+    redirectTo: '/404'
   }
 ];
 
@@ -28,7 +47,7 @@ const routes: Routes = [
   // useHash supports github.io demo page, remove in your app
   imports: [
     RouterModule.forRoot(routes, {
-      useHash: true,
+      useHash: false,
       scrollPositionRestoration: 'enabled'
     })
   ],

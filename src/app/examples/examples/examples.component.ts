@@ -9,6 +9,7 @@ import { routeAnimations, TitleService } from '@app/core';
 import { selectSettings, SettingsState } from '@app/settings';
 
 import { State } from '../examples.state';
+// import * as StateSettings from '../settings/settings.model';
 import { selectAuth } from '@app/core/auth/auth.selectors';
 
 @Component({
@@ -30,6 +31,7 @@ export class ExamplesComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<State>,
+    private store1: Store<any>,
     private router: Router,
     private titleService: TitleService,
     private translate: TranslateService
@@ -51,11 +53,11 @@ export class ExamplesComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToSettings() {
-    this.store
-      .pipe(select(selectSettings), takeUntil(this.unsubscribe$))
-      .subscribe((settings: SettingsState) =>
-        this.translate.use(settings.language)
-      );
+     this.store1
+       .pipe(select(selectSettings), takeUntil(this.unsubscribe$))
+       .subscribe((settings: SettingsState) =>
+         this.translate.use(settings.language)
+       );
   }
 
   private subscribeToRouterEvents() {

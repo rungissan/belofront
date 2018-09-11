@@ -1,5 +1,5 @@
 {
-  "anms.title": "Kit de démarrage Angular NgRx Material",
+  "anms.title": "Autohub Odessa",
   "anms.title.short": "Kit de démarrage",
   "anms.header.github": "Dépot Github",
   "anms.footer.changelog": "Afficher le journal des changements",
@@ -54,6 +54,7 @@
   "anms.settings.title": "Paramètres",
   "anms.settings.general": "Généraux",
   "anms.settings.general.placeholder": "Langue",
+  "anms.settings.general.language.ru": "Russian",
   "anms.settings.general.language.en": "Anglais",
   "anms.settings.general.language.sk": "Slovaque",
   "anms.settings.general.language.de": "Allemand",

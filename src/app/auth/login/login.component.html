@@ -1,0 +1,41 @@
+<section class="h-100">
+  <header class="container h-100">
+    <div class="d-flex align-items-center justify-content-center h-100">
+      <div class="d-flex flex-column">
+        <div>
+          <h1>GrandMedia {{ 'Auth.Login.Title' | translate}}</h1>
+        </div>
+
+
+        <div class="error-wrapper">
+          <label *ngIf="submitted && username.hasError('required')" class="error-label">{{ 'Auth.UsernameRequiredError' | translate }}</label>
+          <label *ngIf="submitted && password.hasError('required')" class="error-label">{{ 'Auth.PasswordRequiredError' | translate }}</label>
+        </div>
+
+        <p>Login in. To see it in action.</p>
+        <form class="m-t" role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit($event, loginForm.value)">
+          <div class="form-group">
+            <input type="text" class="form-control" [formControl]="username" placeholder="{{ 'Auth.Username' | translate }}">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" [formControl]="password" placeholder="{{ 'Auth.Password' | translate }}">
+            <div class="invalid-feedback">
+              Please provide a valid Email.
+            </div>
+          </div>
+
+                    <button type="submit" class="btn btn-primary block full-width m-b">{{ 'Auth.Login.Submit' | translate}}</button>
+          <!-- <app-spinner [isRunning]="authSandbox.loginLoading$ | async"></app-spinner> -->
+
+          <a href="#">
+            <small>&nbsp;&nbsp;&nbsp;Forgot password?</small>
+          </a>
+          <p class="text-muted text-center">
+            <small>Do not have an account?</small>
+          </p>
+
+        </form>
+      </div>
+    </div>
+  </header>
+</section>

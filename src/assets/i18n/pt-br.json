@@ -1,5 +1,5 @@
 {
-  "anms.title": "Angular Ngrx Material Início",
+  "anms.title": "Autohub Odessa",
   "anms.title.short": "Angular Starter",
   "anms.header.github": "Project Github Repository",
   "anms.footer.changelog": "Mostrar changelog",
@@ -51,6 +51,7 @@
   "anms.settings.title": "Configurações",
   "anms.settings.general": "Geral",
   "anms.settings.general.placeholder": "Lingua",
+  "anms.settings.general.language.ru": "Russian",
   "anms.settings.general.language.en": "Inglês",
   "anms.settings.general.language.sk": "Eslovaco",
   "anms.settings.general.language.de": "Alemão",

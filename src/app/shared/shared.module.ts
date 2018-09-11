@@ -23,6 +23,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { BigInputComponent } from './big-input/big-input.component';
 import { BigInputActionComponent } from './big-input/big-input-action.component';
+import { MatStepperModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { BigInputActionComponent } from './big-input/big-input-action.component'
     MatIconModule,
     MatTooltipModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatStepperModule
   ],
   declarations: [BigInputComponent, BigInputActionComponent],
   exports: [
@@ -71,7 +73,7 @@ import { BigInputActionComponent } from './big-input/big-input-action.component'
     MatTooltipModule,
     MatSnackBarModule,
     MatSlideToggleModule,
-
+    MatStepperModule,
     BigInputComponent,
     BigInputActionComponent
   ]

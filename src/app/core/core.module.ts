@@ -15,6 +15,11 @@ import { AuthGuardService } from './auth/auth-guard.service';
 import { AnimationsService } from './animations/animations.service';
 import { TitleService } from './title/title.service';
 import { reducers, metaReducers } from './core.state';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterEffects } from '@app/core/router/router-effect';
+
+
+
 
 @NgModule({
   imports: [
@@ -24,11 +29,12 @@ import { reducers, metaReducers } from './core.state';
 
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    EffectsModule.forRoot([AuthEffects, RouterEffects]),
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({
-          name: 'Angular NgRx Material Starter'
+          name: 'Autohub Custom service'
         }),
 
     // 3rd party
